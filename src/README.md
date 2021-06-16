@@ -68,13 +68,13 @@ Note: the ``manage.py`` is a very important file. You need to use this in all ma
 ```bash 
 
 python manage.py startapp products
-python manage.py startapp blog
-python manage.py startapp profiles
-python manage.py startapp cart
+#python manage.py startapp blog
+#python manage.py startapp profiles
+#python manage.py startapp cart
 
 ```
 
-This commands always came after create an apps in django:
+Thoses commands always came after create an apps in django:
 
 ``python manage.py makemigrations``   
 ``python manage.py migrate``
@@ -122,3 +122,17 @@ This commands always came after create an apps in django:
 
     ```
 
+## Create Product Objects in the python shelL
+
+```bash
+  python manage.py shell
+```
+```py
+>>> from products.models import Product
+>>> Product.objects.all()
+>>> Product.objects.create(
+...   title='New product-Shell', 
+...   description = 'Another object test',
+...   price = '1902',
+... )
+```
