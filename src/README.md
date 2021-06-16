@@ -1,4 +1,5 @@
 
+
 # Notes course Python Django Web Framework - freeCodeCamp.org 
 
 ## Create virtual env with python 3: 
@@ -53,7 +54,7 @@ python manage.py createsuperuser
 ```
 ```
   pass: rast*****
-  email: diffozanzan@gmail.com
+  email: dif*******@gmail.com
   user: difo23
 ```
 
@@ -83,31 +84,29 @@ Thoses commands always came after create an apps in django:
 
 1. Add in ``products/models``    
    
-   ```py
-        from django.db import models
 
 
 ```python
+    from django.db import models
+    
     class Product(models.Model):
         title       = models.TextField()
         description = models.TextField()
         price       = models.TextField()
+       
 ```
 
-   ```
+2. Add in ``products/admin.py``
 
-2. Add in ``products/admin.py``    
-   
-   ```py
+```python
+from django.apps import AppConfig
 
-      from django.apps import AppConfig
+class ProductsConfig(AppConfig):
+     name = 'products'
 
-      class ProductsConfig(AppConfig):
-          name = 'products'
-
-   ```
+```
 3.  Add in  ``src/try_django_learn/settings``        
-    ```py
+```python
         INSTALLED_APPS = [
             'django.contrib.admin',
             'django.contrib.auth',
@@ -122,7 +121,7 @@ Thoses commands always came after create an apps in django:
             'products',
           ]
     
-    ```
+```
 
 ## Create Product Objects in the python shelL
 
@@ -157,7 +156,7 @@ Add different types of fields
 ```python
 class Product(models.Model):
     title  		= models.CharField( max_length = 120 ) # max_length is required
-    desciption 	= models.TextField( blank = True, null = True )
+    desciption 	= models.TextField( blank = True, null = True ) #Blank is for empty or not empty 
     summary		= models.TextField( defalult = 'this is cool!' )
     price = models.DecimalField( decimal_places = 2, max_digits = 10000 )
     
@@ -170,4 +169,91 @@ Validate changes with
 
 ``python manage.py makemigrations``   
 ``python manage.py migrate``
+
+
+
+## Default Homepage to custom homepage:
+
+```
+python manage.py startapp pages
+
+```
+
+Add in  ``src/try_django_learn/settings``
+
+```
+#my owns apps
+'products',
+'pages',
+```
+
+Add in ``src/pages/view.py``
+
+```python
+from django.http import HttpResponse
+from django.shortcuts import render
+
+def home_view(*args, **kwargs):
+  return HttpResponse("<h1>Hello wold!</h2>")
+```
+
+Add urls in ``src/try_django_learn/urls.py ``
+
+```python
+from django.contrib import admin
+from django.urls import path
+
+from pages.views import home_view
+
+urlpatterns = {
+    path('', home_view, name = 'home'),
+    path('admin/', admin.site.urls),
+    
+}
+```
+
+
+
+## URL Routing and requests
+
+Add in ``src/pages/view.py``
+
+```python
+def contact_view(request, *args, **kwargs):
+  print(args. kwargs)
+  print(resquest.user)
+  return HttpResponse("<h1>Contact!</h2>")
+```
+
+Add urls in ``src/try_django_learn/urls.py ``
+
+```python
+from django.contrib import admin
+from django.urls import path
+
+from pages.views import home_view, contact_view
+
+urlpatterns = {
+    path('', home_view, name = 'home'),
+    path('contact/', contact_view, name = 'contact'),
+    path('admin/', admin.site.urls),
+    
+}
+```
+
+## Django Templates
+
+Add in ``src/pages/view.py``
+
+```python
+def home_view(request, *args, **kwargs):
+  print(args. kwargs)
+  print(resquest.user)
+  #return HttpResponse("<h1>Contact!</h2>")
+  return render(
+      request,
+      "home.html", # Name templ
+      {}
+  )
+```
 
