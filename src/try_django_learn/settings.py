@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# /home/digdata/Documents/code-all/courses_notes/python/django/code/try-django-learn/src
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #third party 
+
+    #my owns apps
+    'products',
 ]
 
 MIDDLEWARE = [
