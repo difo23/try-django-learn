@@ -6,7 +6,7 @@
 ``virtualenv -p python3 .``
 
 ## Activate virtual env:
-  
+
 ``source bin/activate``
 
 ## Desactivate virtual env:
@@ -87,10 +87,12 @@ Thoses commands always came after create an apps in django:
         from django.db import models
 
 
-        class Product(models.Model):
-            title       = models.TextField()
-            description = models.TextField()
-            price       = models.TextField()
+```python
+    class Product(models.Model):
+        title       = models.TextField()
+        description = models.TextField()
+        price       = models.TextField()
+```
 
    ```
 
@@ -113,13 +115,13 @@ Thoses commands always came after create an apps in django:
             'django.contrib.sessions',
             'django.contrib.messages',
             'django.contrib.staticfiles',
-
+    
             #third party 
-
+    
             #my owns apps
             'products',
           ]
-
+    
     ```
 
 ## Create Product Objects in the python shelL
@@ -136,3 +138,36 @@ Thoses commands always came after create an apps in django:
 ...   price = '1902',
 ... )
 ```
+
+
+
+## New Models fields
+
+Origin
+
+```python
+class Product(models.Model):
+        title       = models.TextField()
+        description = models.TextField()
+        price       = models.TextField()
+```
+
+Add different types of fields
+
+```python
+class Product(models.Model):
+    title  		= models.CharField( max_length = 120 ) # max_length is required
+    desciption 	= models.TextField( blank = True, null = True )
+    summary		= models.TextField( defalult = 'this is cool!' )
+    price = models.DecimalField( decimal_places = 2, max_digits = 10000 )
+    
+    
+```
+
+[More about models-fields](https://docs.djangoproject.com/en/3.2/ref/models/fields/#model-field-types)
+
+Validate changes with
+
+``python manage.py makemigrations``   
+``python manage.py migrate``
+
