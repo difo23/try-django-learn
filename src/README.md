@@ -336,3 +336,87 @@ Add chunk to ``src/templates/home.html``
 {% endblock %}
 ```
 
+## Include Template Tag include
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Django template structure </title>
+</head>
+<body>
+    {% include 'navbar.html'}
+    
+    {% block content %}
+    	replace me!
+    {% endblock %}
+    
+</body>
+</html>
+
+```
+
+Create `src/templates/navbar.html`
+
+
+
+## Rendering Context in a template
+
+Add in ``src/pages/view.py`
+```python
+def home_view(request, *args, **kwargs):
+  print(args, kwargs)
+  print(request.user)
+  my_context = {
+      "my_text"     : "This is about us",
+      "description" : "This is a description",
+      "list_items"  : [1, 2, 3, 4]  
+  }
+  #return HttpResponse("<h1>Contact!</h2>")
+  return render(
+      request,
+      "home.html", # Name template
+      my_context
+  )
+
+```
+
+
+Add to ``src/templates/home.html``
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>
+    Hello World from template
+</h1>
+
+<p>
+    {{my_text}}, {{description}}
+</p>
+{% endblock %}
+```
+
+## For Loop in a template
+
+Add to ``src/templates/home.html`
+
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>
+    Hello World from template
+</h1>
+
+<p>
+   {% for list_item in list_items %}
+    <li> {{forloop.counter}}-{{ list_item}}</li>
+   {% endfor %}
+</p>
+{% endblock %}
+```
+

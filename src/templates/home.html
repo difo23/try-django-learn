@@ -6,6 +6,8 @@
 </h1>
 
 <p>
-    {{request.user}}
+    {% for list_item in list_items %}
+    <li>{{forloop.counter}}- {{ list_item}}</li>
+    {% endfor %}
 </p>
 {% endblock %}
