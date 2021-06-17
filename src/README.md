@@ -179,7 +179,7 @@ python manage.py startapp pages
 
 ```
 
-Add in  ``src/try_django_learn/settings``
+Add in  ``src/try_django_learn/settings.py``
 
 ```
 #my owns apps
@@ -252,8 +252,71 @@ def home_view(request, *args, **kwargs):
   #return HttpResponse("<h1>Contact!</h2>")
   return render(
       request,
-      "home.html", # Name templ
+      "home.html", # Name template
       {}
   )
+```
+
+Add in ``src/template/home.html``
+
+```html
+<h1>
+     Hello World from template
+</h1>
+
+<p>
+    {{request.user}}
+</p>
+```
+
+Add in ``src/try_django_learn/settings.py``
+
+```python
+
+#TEMPLATES_PATH = f"{BASE_DIR}/templates"
+TEMPLATES_PATH = os.path.join(BASE_DIR, "templates")
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [TEMPLATES_PATH],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
+```
+
+
+
+## Django template engine basics
+
+Use  default structure in django ``base.html`` base is a convention
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Django template structure </title>
+</head>
+<body>
+    
+    
+    {% block content %}
+    {% endblock %}
+    
+</body>
+</html>
+
 ```
 
