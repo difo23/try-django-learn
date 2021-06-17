@@ -83,7 +83,6 @@ Thoses commands always came after create an apps in django:
 >> Note: The two commands use always that you change some model o other things
 
 1. Add in ``products/models``    
-   
 
 
 ```python
@@ -313,10 +312,27 @@ Use  default structure in django ``base.html`` base is a convention
     
     
     {% block content %}
+    	replace me!
     {% endblock %}
     
 </body>
 </html>
 
+```
+
+Add chunk to ``src/templates/home.html``
+
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>
+    Hello World from template
+</h1>
+
+<p>
+    {{request.user}}
+</p>
+{% endblock %}
 ```
 
