@@ -636,5 +636,146 @@ urlpatterns = [
 ]
 ```
 
-## 24 - Raw HTML Form
+
+
+## ⌨️ ([2:14:16](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=8056s)) 24 - Raw HTML Form
+
+```python
+rom django import forms
+
+
+from .models import Product
+
+
+class ProductForm(forms.ModelForm):
+    title       = forms.CharField(label='', 
+                    widget=forms.TextInput(attrs={"placeholder": "Your title"}))
+    description = forms.CharField(
+                        required=False, 
+                        widget=forms.Textarea(
+                                attrs={
+                                    "placeholder": "Your description",
+                                    "class": "new-class-name two",
+                                    "id": "my-id-for-textarea",
+                                    "rows": 20,
+                                    'cols': 120
+                                }
+                            )
+                        )
+    price       = forms.DecimalField(initial=199.99)
+    
+    class Meta:
+        model = Product
+        fields = [
+            'title',
+            'description',
+            'price'
+        ]
+
+
+
+```
+
+[More info...](https://docs.djangoproject.com/en/3.2/topics/forms/)
+
+## ⌨️ ([2:25:33](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=8733s)) 25 - Pure Django Form
+
+```python
+class RawProductForm(forms.Form):
+    title       = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder": "Your title"}))
+    description = forms.CharField(
+                        required=False, 
+                        widget=forms.Textarea(
+                                attrs={
+                                    "placeholder": "Your description",
+                                    "class": "new-class-name two",
+                                    "id": "my-id-for-textarea",
+                                    "rows": 20,
+                                    'cols': 120
+                                }
+                            )
+                        )
+    price       = forms.DecimalField(initial=199.99)
+```
+
+
+
+## ⌨️ ([2:35:30](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=9330s)) 26 - Form Widgets 
+
+
+
+```python
+description = forms.CharField(
+                        required=False, 
+                        widget=forms.Textarea(
+                                attrs={
+                                    "placeholder": "Your description",
+                                    "class": "new-class-name two",
+                                    "id": "my-id-for-textarea",
+                                    "rows": 20,
+                                    'cols': 120
+                                }
+                            )
+                        )
+```
+
+[More info...](https://docs.djangoproject.com/en/3.2/ref/forms/widgets/)
+
+## ⌨️ ([2:41:29](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=9689s)) 27 - Form Validation Methods 
+
+## ⌨️ ([2:48:59](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=10139s)) 28 - Initial Values for Forms 
+
+## ⌨️ ([2:51:42](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=10302s)) 29 - Dynamic URL Routing 
+
+## ⌨️ ([2:54:26](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=10466s)) 30 - Handle DoesNotExist 
+
+## ⌨️ ([2:56:24](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=10584s)) 31 - Delete and Confirm 
+
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action='.' method='POST'>{% csrf_token %}
+    <h1>Do you want to delete the product "{{ object.title }}"?</h1>
+    <p><input type='submit' value='Yes' />  <a href='../'>Cancel</a></p>
+
+</form>
+
+{% endblock %}
+```
+
+
+
+## ⌨️ ([2:58:24](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=10704s)) 32 - View of a List of Database Objects 
+
+## ⌨️ ([3:00:00](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=10800s)) 33 - Dynamic Linking of URLs 
+
+## ⌨️ ([3:01:17](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=10877s)) 34 - Django URLs Reverse 
+
+## ⌨️ ([3:03:10](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=10990s)) 35 - In App URLs and Namespacing 
+
+## ⌨️ ([3:07:35](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=11255s)) 36 - Class Based Views - ListView 
+
+## ⌨️ ([3:10:45](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=11445s)) 37 - Class Based Views - DetailView 
+
+## ⌨️ ([3:15:38](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=11738s)) 38 - Class Based Views - CreateView and UpdateView 
+
+## ⌨️ ([3:21:23](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=12083s)) 39 - Class Based Views - DeleteView 
+
+## ⌨️ ([3:24:02](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=12242s)) 40 - Function Based View to Class Based View 
+
+## ⌨️ ([3:27:15](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=12435s)) 41 - Raw Detail Class Based View 
+
+## ⌨️ ([3:30:31](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=12631s)) 42 - Raw List Class Based View 
+
+## ⌨️ ([3:33:32](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=12812s)) 43 - Raw Create Class Based View 
+
+## ⌨️ ([3:26:03](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=12363s)) 44 - Form Validation on a Post Method 
+
+## ⌨️ ([3:37:58](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=13078s)) 45 - Raw Update Class Based View 
+
+## ⌨️ ([3:41:13](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=13273s)) 46 - Raw Delete Class Based View 
+
+## ⌨️ ([3:42:17](https://www.youtube.com/watch?v=F5mRW0jo-U4&t=13337s)) 47 - Custom Mixin for Class Based Views
 
